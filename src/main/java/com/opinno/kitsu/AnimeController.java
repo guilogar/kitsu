@@ -8,6 +8,8 @@ package com.opinno.kitsu;
 import com.opinno.kitsu.Http.HttpGetRequest;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,8 +26,21 @@ import org.springframework.web.servlet.ModelAndView;
 public class AnimeController
 {
     @RequestMapping("/anime")
-    public ModelAndView anime() throws IOException, JSONException
+    public ModelAndView anime(HttpSession session) throws IOException, JSONException
     {
+        @SuppressWarnings("unchecked")
+        List<String> messages = (List<String>) session.getAttribute("MY_SESSION_MESSAGES");
+
+        if (messages == null)
+        {
+            messages = new ArrayList<>();
+        }
+        
+        for(String s : messages)
+        {
+            System.out.println(s);
+        }
+        
         ArrayList<Object> animus = new ArrayList<>();
         
         String url = "https://kitsu.io/api/edge/anime";

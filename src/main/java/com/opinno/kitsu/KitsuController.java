@@ -5,19 +5,13 @@
  */
 package com.opinno.kitsu;
 
-import com.opinno.kitsu.Http.HttpGetRequest;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
-import org.json.JSONArray;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 /**
  *
  * @author guilogar
@@ -33,8 +27,19 @@ public class KitsuController {
     }
     
     @RequestMapping("/")
-    public String anime() throws IOException, JSONException
+    public String index(HttpServletRequest request)
     {
+        @SuppressWarnings("unchecked")
+        List<String> messages = (List<String>) request.getSession().getAttribute("MY_SESSION_MESSAGES");
+        
+        if (messages == null)
+        {
+            messages = new ArrayList<>();
+            request.getSession().setAttribute("MY_SESSION_MESSAGES", messages);
+        }
+        messages.add("perico perez");
+        request.getSession().setAttribute("MY_SESSION_MESSAGES", messages);
+        
         return "redirect:/anime";
     }
 }
