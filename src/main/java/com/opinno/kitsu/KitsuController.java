@@ -9,6 +9,7 @@ import com.opinno.kitsu.Http.HttpGetRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import org.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,22 +33,8 @@ public class KitsuController {
     }
     
     @RequestMapping("/")
-    public ModelAndView index(Map<String, Object> model) throws IOException, JSONException
+    public String anime() throws IOException, JSONException
     {
-        ArrayList<Object> animus = new ArrayList<>();
-        animus.add(null);
-        animus.add(null);
-        animus.add(null);
-        animus.add(null);
-        animus.add(null);
-        animus.add(null);
-        
-        HttpGetRequest hgr = new HttpGetRequest("https://kitsu.io/api/edge/anime");
-        String result = hgr.makeHttpRequest();
-        JSONObject o = new JSONObject(result);
-        
-        ModelAndView mv = new ModelAndView("index");
-        mv.addObject("animus", animus);
-        return mv;
+        return "redirect:/anime";
     }
 }

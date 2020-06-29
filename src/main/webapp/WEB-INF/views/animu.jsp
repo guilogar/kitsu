@@ -97,34 +97,92 @@
                 </nav>
             </header>
             
-            <div role="main" class="container">
-                <div class="row">
-                    <c:forEach items="${animus}" var="anime">
-                        <div class="col-3">
-                            <div class="card" style="width: 18rem;">
-                                <a href="/animu/${anime.getString("id")}">
-                                    <img class="card-img-top" 
-                                         src="${anime.getJSONObject("attributes").getJSONObject("posterImage").getString("tiny")}"
-                                         alt="${anime.getJSONObject("attributes").getString("slug")}" />
-                                </a>
-                                <div class="card-body">
-                                  <h5 class="card-title">
-                                      ${anime.getJSONObject("attributes").getString("slug")}
-                                  </h5>
-                                  <p class="card-text text-truncate">
-                                      ${anime.getJSONObject("attributes").getString("synopsis")}
-                                  </p>
-                                  <a href="/animu/${anime.getString("id")}" class="btn btn-primary">Ver animu</a>
-                                </div>
+            <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+                <div class="col-md-6 px-0">
+                  <h1 class="display-4 font-italic">
+                      ${anime.getJSONObject("attributes").getString("slug")}
+                  </h1>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                      <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <a href="/animu/${anime.getString("id")}">
+                                <img class="card-img-top" 
+                                 src="${anime.getJSONObject("attributes").getJSONObject("posterImage").getString("large")}"
+                                 alt="${anime.getJSONObject("attributes").getString("slug")}" />
+                            </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card flex-md-row mb-4 box-shadow h-md-250 align-items-center">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item"
+                                        src="https://www.youtube.com/embed/${anime.getJSONObject("attributes").getString("youtubeVideoId")}">
+                                </iframe>
                             </div>
                         </div>
-                    </c:forEach>
+                    </div>
                 </div>
+            </div>
+
+            <div role="main" class="container">
+              <div class="row">
+                <div class="col-md-8 blog-main">
+                  <div class="blog-post">
+                    <h2 class="blog-post-title">Sinopsis</h2>
+                    
+                    <p class="blog-post-meta">
+                        Created at ${anime.getJSONObject("attributes").getString("createdAt")}
+                    </p>
+                    <p class="blog-post-meta">
+                        Updated at ${anime.getJSONObject("attributes").getString("updatedAt")}
+                    </p>
+
+                    <p>
+                        ${anime.getJSONObject("attributes").getString("synopsis")}
+                    </p>
+                    <hr>
+                  </div>
+                </div>
+
+                <aside class="col-md-4 blog-sidebar">
+                  <div class="p-3 mb-3 bg-light rounded">
+                    <h4 class="font-italic">
+                        About of this anime
+                    </h4>
+                    <p class="mb-0">
+                        ${anime.getJSONObject("attributes").getString("ageRatingGuide")}
+                    </p>
+                  </div>
+
+                  <div class="p-3">
+                    <h4 class="font-italic">Géneros</h4>
+                    <ol class="list-unstyled mb-0">
+                        <c:forEach items="${genres}" var="gen">
+                            <li>
+                                <a href="/genre/${gen.getString("id")}">
+                                    ${gen.getJSONObject("attributes").getString("name")}
+                                </a>
+                            </li>
+                        </c:forEach>
+                    </ol>
+                  </div>
+                </aside>
+
+              </div>
+
             </div>
 
             <footer class="footer">
                 <div class="container">
-                    <span class="text-muted">Develop by <a href="https://github.com/guilogar">guilogar</a></span>
+                    <span class="text-muted">
+                        Develop by <a href="https://github.com/guilogar">guilogar</a>
+                    </span>
                 </div>
             </footer>
         </body>

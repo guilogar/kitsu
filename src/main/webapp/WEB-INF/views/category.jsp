@@ -97,34 +97,70 @@
                 </nav>
             </header>
             
-            <div role="main" class="container">
-                <div class="row">
-                    <c:forEach items="${animus}" var="anime">
-                        <div class="col-3">
-                            <div class="card" style="width: 18rem;">
-                                <a href="/animu/${anime.getString("id")}">
-                                    <img class="card-img-top" 
-                                         src="${anime.getJSONObject("attributes").getJSONObject("posterImage").getString("tiny")}"
-                                         alt="${anime.getJSONObject("attributes").getString("slug")}" />
-                                </a>
-                                <div class="card-body">
-                                  <h5 class="card-title">
-                                      ${anime.getJSONObject("attributes").getString("slug")}
-                                  </h5>
-                                  <p class="card-text text-truncate">
-                                      ${anime.getJSONObject("attributes").getString("synopsis")}
-                                  </p>
-                                  <a href="/animu/${anime.getString("id")}" class="btn btn-primary">Ver animu</a>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
+            <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+                <div class="col-md-6 px-0">
+                  <h1 class="display-4 font-italic">
+                      ${category.getJSONObject("attributes").getString("title")}
+                  </h1>
                 </div>
+            </div>
+
+            <div class="container">
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                      <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <a href="/category/${category.getString("id")}">
+                                <img class="card-img-top"
+                                 src="${category.getJSONObject("attributes").getJSONObject("image").getString("large")}"
+                                 alt="${category.getJSONObject("attributes").getString("title")}" />
+                            </a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div role="main" class="container">
+              <div class="row">
+                <div class="col-md-8 blog-main">
+                  <div class="blog-post">
+                    <h2 class="blog-post-title">Sinopsis</h2>
+                    
+                    <p class="blog-post-meta">
+                        Created at ${category.getJSONObject("attributes").getString("createdAt")}
+                    </p>
+                    <p class="blog-post-meta">
+                        Updated at ${category.getJSONObject("attributes").getString("updatedAt")}
+                    </p>
+
+                    <p>
+                        ${category.getJSONObject("attributes").getString("description")}
+                    </p>
+                    <hr>
+                  </div>
+                </div>
+
+                <aside class="col-md-4 blog-sidebar">
+                  <div class="p-3 mb-3 bg-light rounded">
+                    <h4 class="font-italic">
+                        About of this category
+                    </h4>
+                    <p class="mb-0">
+                        ${category.getJSONObject("attributes").getString("slug")}
+                    </p>
+                  </div>
+                </aside>
+
+              </div>
+
             </div>
 
             <footer class="footer">
                 <div class="container">
-                    <span class="text-muted">Develop by <a href="https://github.com/guilogar">guilogar</a></span>
+                    <span class="text-muted">
+                        Develop by <a href="https://github.com/guilogar">guilogar</a>
+                    </span>
                 </div>
             </footer>
         </body>

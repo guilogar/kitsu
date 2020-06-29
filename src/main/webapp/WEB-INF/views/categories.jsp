@@ -99,22 +99,22 @@
             
             <div role="main" class="container">
                 <div class="row">
-                    <c:forEach items="${animus}" var="anime">
+                    <c:forEach items="${categories}" var="category">
                         <div class="col-3">
                             <div class="card" style="width: 18rem;">
-                                <a href="/animu/${anime.getString("id")}">
-                                    <img class="card-img-top" 
-                                         src="${anime.getJSONObject("attributes").getJSONObject("posterImage").getString("tiny")}"
-                                         alt="${anime.getJSONObject("attributes").getString("slug")}" />
+                                <a href="/category/${category.getString("id")}">
+                                    <img class="card-img-top"
+                                     src="${category.getJSONObject("attributes").getJSONObject("image").getString("tiny")}"
+                                     alt="${category.getJSONObject("attributes").getString("title")}" />
                                 </a>
                                 <div class="card-body">
-                                  <h5 class="card-title">
-                                      ${anime.getJSONObject("attributes").getString("slug")}
-                                  </h5>
-                                  <p class="card-text text-truncate">
-                                      ${anime.getJSONObject("attributes").getString("synopsis")}
-                                  </p>
-                                  <a href="/animu/${anime.getString("id")}" class="btn btn-primary">Ver animu</a>
+                                    <h5 class="card-title">
+                                        ${category.getJSONObject("attributes").getString("title")}
+                                    </h5>
+                                    <p class="card-text text-truncate">
+                                        ${category.getJSONObject("attributes").getString("description")}
+                                    </p>
+                                    <a href="/category/${category.getString("id")}" class="btn btn-primary">Ver categoria</a>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,9 @@
 
             <footer class="footer">
                 <div class="container">
-                    <span class="text-muted">Develop by <a href="https://github.com/guilogar">guilogar</a></span>
+                    <span class="text-muted">
+                        Develop by <a href="https://github.com/guilogar">guilogar</a>
+                    </span>
                 </div>
             </footer>
         </body>
