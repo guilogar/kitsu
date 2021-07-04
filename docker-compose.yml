@@ -1,6 +1,6 @@
 version: "1"
 services:
-  golang:
+  kitsu:
     container_name: kitsu
     build:
       context: .
