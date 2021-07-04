@@ -2,3 +2,4 @@ schema_version: 20180708
 name: kitsu
 version: 0.0.1
 runtime: docker
+timeout: 240
