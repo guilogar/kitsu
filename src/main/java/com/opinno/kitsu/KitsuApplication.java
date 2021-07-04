@@ -22,14 +22,14 @@ public class KitsuApplication extends SpringBootServletInitializer
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(KitsuApplication.class);
     }
-    
-    public static ConfigurableApplicationContext main(String[] args)
-    {
-        return SpringApplication.run(KitsuApplication.class, args);
-    }
 
-    public static ConfigurableApplicationContext main(String args)
+    public static void main(String args)
     {
-        return SpringApplication.run(KitsuApplication.class, args);
+        SpringApplication.run(KitsuApplication.class, args);
+    }
+    
+    public static void main(String[] args)
+    {
+        SpringApplication.run(KitsuApplication.class, args);
     }
 }
