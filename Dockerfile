@@ -4,6 +4,9 @@
 # For Java 11, try this
 FROM adoptopenjdk/openjdk11:alpine-jre
 
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+
 # Refer to Maven build -> finalName
 ARG JAR_FILE=target/kitsu-0.0.1-SNAPSHOT.jar
 
