@@ -4,9 +4,6 @@
 # For Java 11, try this
 FROM adoptopenjdk/openjdk11:alpine-jre
 
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-
 # Refer to Maven build -> finalName
 ARG JAR_FILE=target/kitsu-0.0.1-SNAPSHOT.jar
 
@@ -18,4 +15,4 @@ COPY . .
 COPY ${JAR_FILE} app.jar
 
 # java -jar /opt/app/app.jar
-ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=80"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
