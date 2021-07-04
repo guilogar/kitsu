@@ -23,9 +23,9 @@ public class KitsuApplication extends SpringBootServletInitializer
         return application.sources(KitsuApplication.class);
     }
 
-    public static void main(String args)
+    public static String main(String args)
     {
-        SpringApplication.run(KitsuApplication.class, args);
+        return "kitsu!";
     }
     
     public static void main(String[] args)
