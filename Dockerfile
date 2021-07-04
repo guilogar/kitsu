@@ -11,6 +11,7 @@ ARG JAR_FILE=target/kitsu-0.0.1-SNAPSHOT.jar
 WORKDIR /opt/app
 
 # cp target/spring-boot-web.jar /opt/app/app.jar
+COPY . .
 COPY ${JAR_FILE} app.jar
 
 # java -jar /opt/app/app.jar
