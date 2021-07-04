@@ -2,6 +2,6 @@ schema_version: 20180708
 name: kitsu
 version: 0.0.5
 runtime: java
-build_image: fnproject/fn-java-fdk-build:jdk11-1.0.130
-run_image: fnproject/fn-java-fdk:jre11-1.0.130
-cmd: com.opinno.kitsu.KitsuApplication::main
+build_image: adoptopenjdk/openjdk11:alpine-jre
+run_image: adoptopenjdk/openjdk11:alpine-jre
+cmd: java -jar app.jar
